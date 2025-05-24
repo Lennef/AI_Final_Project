@@ -1,0 +1,83 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "super-emotion",
+  "dataset_size": 79990220,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/cirimus/super-emotion@c6e6861ee0b6c2803ab31cdc893aa674cf288961/data/train-00000-of-00001.parquet": {
+      "num_bytes": 28096542,
+      "checksum": null
+    },
+    "hf://datasets/cirimus/super-emotion@c6e6861ee0b6c2803ab31cdc893aa674cf288961/data/validation-00000-of-00001.parquet": {
+      "num_bytes": 3501477,
+      "checksum": null
+    },
+    "hf://datasets/cirimus/super-emotion@c6e6861ee0b6c2803ab31cdc893aa674cf288961/data/test-00000-of-00001.parquet": {
+      "num_bytes": 3758407,
+      "checksum": null
+    }
+  },
+  "download_size": 35356426,
+  "features": {
+    "text": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "labels": {
+      "feature": {
+        "dtype": "int64",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "labels_str": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "labels_source": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "source": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 115346646,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 63568229,
+      "num_examples": 439361,
+      "dataset_name": "super-emotion"
+    },
+    "validation": {
+      "name": "validation",
+      "num_bytes": 7921409,
+      "num_examples": 54835,
+      "dataset_name": "super-emotion"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 8500582,
+      "num_examples": 58625,
+      "dataset_name": "super-emotion"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
