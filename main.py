@@ -2,8 +2,9 @@ import torch
 import torch.nn as nn
 from flask import Flask, request, render_template
 from sklearn.feature_extraction.text import TfidfVectorizer
-import pickle
 from joblib import load
+import webbrowser
+import threading
 
 app = Flask(__name__)
 
@@ -25,7 +26,7 @@ class MLP(nn.Module):
 
 # 載入 TfidfVectorizer
 vectorizer = load("tfidf_vectorizer.pkl")
-input_dim = vectorizer.max_features  # 取向量維度
+input_dim = vectorizer.max_features  
 hidden_dim = 256  
 output_dim = 7    
 
@@ -33,6 +34,17 @@ output_dim = 7
 model = MLP(input_dim, hidden_dim, output_dim)
 model.load_state_dict(torch.load("mlp_weights.pth", map_location=torch.device('cpu')))
 model.eval()
+
+# 定義情緒標籤與表情符號
+emotion_labels = {
+    0: ("Anger", "😠"),
+    1: ("Fear", "😨"),
+    2: ("Joy", "😊"),
+    3: ("Love", "❤️"),
+    4: ("Neutral", "😐"),
+    5: ("Sadness", "😢"),
+    6: ("Surprise", "😲")
+}
 
 def preprocess_text(text):
     text = text.lower()
@@ -50,8 +62,13 @@ def index():
         with torch.no_grad():
             output = model(input_tensor)
             pred = torch.argmax(output, dim=1).item()
-        result = f"模型預測結果: {pred}"
+        label, emoji = emotion_labels.get(pred, ("Unknown", "❓"))
+        result = f"{user_input} {emoji}"
     return render_template("index.html", result=result)
 
+def open_browser():
+    webbrowser.open_new("http://localhost:5000")
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    threading.Timer(1.0, open_browser).start()
+    app.run(debug=False, use_reloader=False)

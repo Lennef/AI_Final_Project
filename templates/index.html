@@ -1,14 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>文字分類預測</title>
+    <title>Emotion Analysis</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 1000px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .input-box, .output-box {
+            width: 45%;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+        .input-box {
+            border: 2px solid #007BFF;
+            margin-right: 20px;
+        }
+        .output-box {
+            border: 2px solid #28A745;
+            margin-left: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            resize: none;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .submit-button {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>輸入文字進行分類</h1>
+    <h1>Emotion Analysis</h1>
     <form method="post">
-        <textarea name="text" rows="4" cols="50"></textarea><br>
-        <input type="submit" value="預測">
+        <div class="container">
+            <div class="input-box">
+                <textarea name="text" placeholder="Type the text here"></textarea>
+            </div>
+            <div class="output-box">
+                <h2>Result</h2>
+                <p>{{ result }}</p>
+            </div>
+        </div>
+        <input class="submit-button" type="submit" value="Analysis">
     </form>
-    <p>{{ result }}</p>
 </body>
 </html>
